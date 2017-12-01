@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/trip/choose', 'PlanController@choose')->name('plan');
+
+Route::get('/trip/custom', 'PlanController@custom')->name('custom');
+
+Route::get('/trip/recommendation', 'PlanController@recommendation')->name('recommendation');
+
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

@@ -2,79 +2,149 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/favicon-76.png">
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/favicon-57.png">
+    <meta name="msapplication-TileColor" content="#colorHere"> <!-- put hex color here -->
+    <meta name="msapplication-TileImage" content="{{ asset('images/favicon/favicon-144.png') }}">
+    <link rel="icon" sizes="16x16 24x24 32x32 48x48 64x64" href="images/favicon/favicon.ico">
+    <link rel="mask-icon" href="images/favicon/favicon.svg" color="#colorHere"> <!-- put hex color here -->
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Configure the font used -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('js/modernizr-2.8.3.min.js') }}"></script>
+    <script>
+        var functions = new Array();
+    </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+    @include('layouts.header')
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    <div id="content">
+      <!-- <div class="container container-body"> -->
+      @yield('content')
+      <!-- </div> -->
+    </div>
+    
+    @include('layouts.footer')
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+    <div id="general--modal" class="general--modal">
+      <div class="modal-container panel panel-default">
+        <div class="close--modal">
+          <em class="fa fa-close"></em>
+        </div>
+        <div class="modal--child modal--info">
+            <div class="modal--img">
+              <em class="fa fa-info-circle"></em>
             </div>
-        </nav>
+            <div class="modal--text">
+              <div class="mt--head">
+                This is info modal
+              </div>
+              <div class="mt--body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas reiciendis unde deleniti numquam molestias cum quis neque voluptates sunt voluptatem asperiores, tenetur veniam, veritatis eaque dolore tempora soluta voluptatibus inventore.
+              </div>
+            </div>
+            <div class="modal--button">
+              <button type="button" class="mb-sm btn btn-primary btnInfoOk">Ok</button>
+            </div>
+        </div>
+        <div class="modal--child modal--error">
+            <div class="modal--img">
+              <em class="fa fa-close"></em>
+            </div>
+            <div class="modal--text">
+              <div class="mt--head">
+                This is Error modal
+              </div>
+              <div class="mt--body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas reiciendis unde deleniti numquam molestias cum quis neque voluptates sunt voluptatem asperiores, tenetur veniam, veritatis eaque dolore tempora soluta voluptatibus inventore.
+              </div>
+            </div>
+            <div class="modal--button">
+              <button type="button" class="mb-sm btn btn-default btnAlertOk">Ok</button>
+            </div>
+        </div>
+        <div class="modal--child modal--confirmation">
+            <div class="modal--text">
+              <div class="mt--head">
+                Are you sure you want to do this ?
+              </div>
+              <div class="mt--body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas reiciendis unde deleniti numquam molestias cum quis neque voluptates sunt voluptatem asperiores, tenetur veniam, veritatis eaque dolore tempora soluta voluptatibus inventore.
+              </div>
+            <div class="modal--button">
+              <button type="button" class="mb-sm btn btn-green btnConfirmOk">Do it</button>
+              <button type="button" class="mb-sm btn btn-default btnConfirmCancel">Nah</button>
+            </div>
+        </div>
 
-        @yield('content')
+      </div>
+      <div class="modal--child modal--confirmation--notes">
+          <div class="modal--text">
+            <div class="mt--head">
+              Are you sure you want to do this ?
+            </div>
+            <div class="mt--body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas reiciendis unde deleniti numquam molestias cum quis neque voluptates sunt voluptatem asperiores, tenetur veniam, veritatis eaque dolore tempora soluta voluptatibus inventore.
+            </div>
+            <div class="mt--notes">
+              <label for="">Notes :</label>
+              <textarea name="name" rows="4" ></textarea>
+            </div>
+          </div>
+          <div class="modal--button">
+            <button type="button" class="mb-sm btn btn-green">Do it</button>
+            <button type="button" class="mb-sm btn btn-default">Nah</button>
+          </div>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
+    <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCB9MAo25mtkZbVK4cKMjLVHFnLq0HL9l8">
+     </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script>window.jQuery || document.write('<script src="{{ asset('js/plugins/jquery.min.js') }}"><\/script>')</script> -->
+    <script src="{{ asset('js/plugins/jquery.min.js') }}"></script>    
+    <script src="{{ asset('js/global.js') }}"></script>
+    <script src="{{ asset('enginejs/config/config.js') }}"></script>
+    <script src="{{ asset('enginejs/list.js') }}"></script>
+    <script src="{{ asset('enginejs/template.js') }}"></script>
+    <script src="{{ asset('js/plugins.js') }}"></script>
+    <script src="{{ asset('js/functional.js') }}" type="text/javascript">  </script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    @yield('jsextra')
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>
+  </body>
 </html>
