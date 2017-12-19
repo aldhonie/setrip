@@ -11,28 +11,16 @@
 		<div class="swiper-container home-banner__slider">
 			<!-- Additional required wrapper -->
 		    <div class="swiper-wrapper" id="top">
-		        <!-- Slides -->
+						<!-- Slides -->
+						@foreach($data['banner'] as $val)
 		        <div class="swiper-slide">
-					<div class="home-banner__wrapper">
-						<div class="home-banner__img" style="background-image: url('images/home-banner.jpeg');"></div>
-						<div class="home-banner__overlay"></div>
-						<h1 class="home-banner__title container">Temukan tempat wisata <div class="home-banner__subtitle"><span>1</span></div></h1>
-					</div>
-		        </div>
-		        <div class="swiper-slide">
-					<div class="home-banner__wrapper">
-						<div class="home-banner__img" style="background-image: url('images/home-banner.jpeg');"></div>
-						<div class="home-banner__overlay"></div>
-						<h1 class="home-banner__title container">Temukan tempat wisata <div class="home-banner__subtitle"><span>2</span></div></h1>
-					</div>
-		        </div>
-		        <div class="swiper-slide">
-					<div class="home-banner__wrapper">
-						<div class="home-banner__img" style="background-image: url('images/home-banner.jpeg');"></div>
-						<div class="home-banner__overlay"></div>
-						<h1 class="home-banner__title container">Temukan tempat wisata <div class="home-banner__subtitle"><span>3</span></div></h1>
-					</div>
-		        </div>
+							<div class="home-banner__wrapper">
+								<div class="home-banner__img" style="background-image: url('{{ $val['image'] }}');"></div>
+								<div class="home-banner__overlay"></div>
+								<h1 class="home-banner__title container">{!! $val['title'] !!} <div class="home-banner__subtitle"><span>1</span></div></h1>
+							</div>
+						</div>
+						@endforeach
 		    </div>
 		    <!-- If we need pagination -->
 		    <div class="swiper-pagination home-pagination banner-pagination"></div>
@@ -50,20 +38,20 @@
 				<div class="home-datetime__choose col-md-4">
 					<div class="form-group">
 						<div class="input-group select with-icon">
-					        <div class="input-icon icon-a">
-					          <img class="svg-image" src="{{ asset('images/icon/ic-location.svg') }}" alt="Location icon">
-					        </div>
-					        <input class="home-datetime__option" type="text" mode="typeahead" placeholder="Kemana?">
-					    </div>
+							<div class="input-icon icon-a">
+								<img class="svg-image" src="{{ asset('images/icon/ic-location.svg') }}" alt="Location icon">
+							</div>
+							<input class="home-datetime__option" type="text" mode="typeahead" placeholder="@lang('trns.where')?">
+						</div>
 					</div>
 				</div>
 				<div class="home-datetime__choose home-datetime__choose--middle col-md-4">
 					<div class="form-group">
 						<div class="input-group select with-icon">
-					        <div class="input-icon icon-b">
-					          <img class="svg-image" src="{{ asset('images/icon/ic-calendar-default.svg') }}" alt="Calendar icon">
-					        </div>
-					        <input class="home-datetime__option" type="text" mode="daterange" readonly>
+								<div class="input-icon icon-b">
+									<img class="svg-image" src="{{ asset('images/icon/ic-calendar-default.svg') }}" alt="Calendar icon">
+								</div>
+								<input class="home-datetime__option" type="text" mode="daterange" placeholder="@lang('trns.when')?" readonly>
 					    </div>
 					</div>
 				</div>
@@ -73,7 +61,7 @@
 					        <div class="input-icon icon-c">
 					          <img class="svg-image" src="{{ asset('images/icon/ic-person.svg') }}" alt="Person icon">
 					        </div>
-					        <input class="home-datetime__option" type="text" mode="increment" readonly value="Peserta?">
+					        <input class="home-datetime__option" type="text" mode="increment" readonly value="@lang('trns.participants')?">
 					    </div>
 					</div>
 					<div id="qty" class="home-datetime__qty">
@@ -87,7 +75,7 @@
 				        </div>
 					</div>
 					<div class="home-datetime__btn">
-						<button class="btn btn--orange">CARI</button>
+						<button class="btn btn--orange">@lang('trns.search')</button>
 					</div>
 				</div>
 			</div>
@@ -95,87 +83,67 @@
 	</div>
 	<!-- open trip section -->
 	<div class="home-wrapper">
-		<h1 class="home-wrapper__title">Top Destination</h1>
+		<h1 class="home-wrapper__title">@lang('trns.top-dest')</h1>
 		<div class="home-gridview clearfix">
 			<div class="container">
 				<div class="home-gridview__big row">
+					@foreach($data['section1'] as $k => $val)
+					@if($k < 2)					
 					<div class="col-md-6">
+					<a href="{{ url('') }}">
 						<div class="home-biggrid" style="background-image: url('images/image-a.jpg');">
 							<div class="home-biggrid__overlay"></div>
+
 							<div class="home-biggrid__hover">
-								<h3>Jalan - Jalan Bersejarah di Bangunan Belanda</h3>
-								<p>This is hover state sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
+								<h3>{{ $val['title'] }}</h3>
+								<p>{{ $val['desc'] }}</p>
 								<div class="home-biggrid__pricehover">
-									<span>Mulai Dari</span>
-									<p>IDR 200.000</p>
+									<span>@lang('trns.start') @lang('trns.from')</span>
+									<p>IDR {{ $val['price'] }}</p>
 									<img class="svg-image" src="{{ asset('images/icon/home-arrow.svg') }}" alt="">
 								</div>
 							</div>
+							
 							<!-- default state -->
 							<div class="home-biggrid__default">
-								<h3>Jalan - Jalan Bersejarah di Bangunan Belanda</h3>
+								<h3>{{ $val['title'] }}</h3>
 								<div class="home-biggrid__price">
-									<span>Mulai Dari</span>
-									<p>IDR 200.000</p>
+									<span>@lang('trns.start') @lang('trns.from')</span>
+									<p>IDR {{ $val['price'] }}</p>
 								</div>
 								<div class="home-biggrid__infowrap">
 									<div class="home-biggrid__info">
 										<span class="fa fa-map-marker"></span>
-										<p>Bandung</p>
+										<p>{{ $val['destination']}}</p>
 									</div>
 									<div class="home-biggrid__info">
 										<span class="fa fa-calendar"></span>
-										<p>24 April - 25 April</p>
+										<p>{{ $val['dep_date'] }} - {{ $val['ret_date'] }}</p>
 									</div>
 								</div>
 							</div>
+
 						</div>
+					</a>	
 					</div>
-					<div class="col-md-6">
-						<div class="home-biggrid" style="background-image: url('images/image-a.jpg');">
-							<div class="home-biggrid__overlay"></div>
-							<!-- hover state -->
-							<div class="home-biggrid__hover">
-								<h3>Jalan - Jalan Bersejarah di Bangunan Belanda</h3>
-								<p>This is hover state sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-								<div class="home-biggrid__pricehover">
-									<span>Mulai Dari</span>
-									<p>IDR 200.000</p>
-									<img class="svg-image" src="{{ asset('images/icon/home-arrow.svg') }}" alt="">
-								</div>
-							</div>
-							<!-- default state -->
-							<div class="home-biggrid__default">
-								<h3>Jalan - Jalan Bersejarah di Bangunan Belanda</h3>
-								<div class="home-biggrid__price">
-									<span>Mulai Dari</span>
-									<p>IDR 200.000</p>
-								</div>
-								<div class="home-biggrid__infowrap">
-									<div class="home-biggrid__info">
-										<span class="fa fa-map-marker"></span>
-										<p>Bandung</p>
-									</div>
-									<div class="home-biggrid__info">
-										<span class="fa fa-calendar"></span>
-										<p>24 April - 25 April</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
+					@endif
+					@endforeach
 				</div>
+
 				<div class="home-gridview__small row">
+					@foreach($data['section1'] as $k => $val)
+					@if($k > 1 && $k < 5)
 					<div class="col-md-4">
 						<div class="home-smallgrid" style="background-image: url('images/image-b.jpg');">
 							<div class="home-biggrid__overlay"></div>
 							<!-- hover state -->
 							<div class="home-smallgrid__hover">
 								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
+									<h5>{{ $val['desc']}}</h5>
 									<div class="home-biggrid__pricehover">
 										<span>Mulai Dari</span>
-										<p>IDR 200.000</p>
+										<p>IDR $val['price']</p>
 										<img class="svg-image" src="{{ asset('images/icon/home-arrow.svg') }}" alt="">
 									</div>
 								</div>
@@ -183,92 +151,31 @@
 							<!-- default state -->
 							<div class="home-smallgrid__default">
 								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
+									<h5>{{ $val['desc'] }}</h5>
 									<div class="home-small-grid__infowrap">
 										<div class="home-biggrid__info">
 											<span class="fa fa-map-marker"></span>
-											<p>Bandung</p>
+											<p>{{ $val['destination'] }}</p>
 										</div>
 										<div class="home-biggrid__info">
 											<span class="fa fa-calendar"></span>
-											<p>24 April - 25 April</p>
+											<p>{{ $val['dep_date'] }} - {{ $val['ret_date'] }}</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="home-smallgrid" style="background-image: url('images/image-b.jpg');">
-							<div class="home-biggrid__overlay"></div>
-							<!-- hover state -->
-							<div class="home-smallgrid__hover">
-								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
-									<div class="home-biggrid__pricehover">
-										<span>Mulai Dari</span>
-										<p>IDR 200.000</p>
-										<img class="svg-image" src="{{ asset('images/icon/home-arrow.svg') }}" alt="">
-									</div>
-								</div>
-							</div>
-							<!-- default state -->
-							<div class="home-smallgrid__default">
-								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
-									<div class="home-small-grid__infowrap">
-										<div class="home-biggrid__info">
-											<span class="fa fa-map-marker"></span>
-											<p>Bandung</p>
-										</div>
-										<div class="home-biggrid__info">
-											<span class="fa fa-calendar"></span>
-											<p>24 April - 25 April</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="home-smallgrid" style="background-image: url('images/image-b.jpg');">
-							<div class="home-biggrid__overlay"></div>
-							<!-- hover state -->
-							<div class="home-smallgrid__hover">
-								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
-									<div class="home-biggrid__pricehover">
-										<span>Mulai Dari</span>
-										<p>IDR 200.000</p>
-										<img class="svg-image" src="{{ asset('images/icon/home-arrow.svg') }}" alt="">
-									</div>
-								</div>
-							</div>
-							<!-- default state -->
-							<div class="home-smallgrid__default">
-								<div class="home-smallgrid__wrapper">
-									<h5>3 Hari di Bandung Barat : Tangkuban Perahu &amp; Maribaya</h5>
-									<div class="home-small-grid__infowrap">
-										<div class="home-biggrid__info">
-											<span class="fa fa-map-marker"></span>
-											<p>Bandung</p>
-										</div>
-										<div class="home-biggrid__info">
-											<span class="fa fa-calendar"></span>
-											<p>24 April - 25 April</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					@endif
+					@endforeach
+				
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- recommend plan section -->
 	<div class="home-wrapper relative">
-		<h1 class="home-wrapper__title">Best Attraction</h1>
+		<h1 class="home-wrapper__title">@lang('trns.best-attraction')</h1>
 		<!-- JS untuk overflow kiri dan kanan -->
 		<div class="home-overflowview relative">
 			<div class="swiper-container home-rp__slider">

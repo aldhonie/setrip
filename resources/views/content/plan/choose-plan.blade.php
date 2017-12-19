@@ -3,7 +3,7 @@
 @section('title')
 
 @endsection
-
+@php $data =[] @endphp
 @section('content')
 <div class="container container--full grey">
 	<div class="plan-destinasi-board">
@@ -14,7 +14,7 @@
 	            kota
 	          </div>
 	          <div class="value">
-	            bandung
+	            {{ $data['destination'] }}
 	          </div>
 	        </div>
 	        <div class="plan-destinasi-board-box">
@@ -22,7 +22,7 @@
 	            tanggal
 	          </div>
 	          <div class="value">
-	            21 April - 23 April
+	            {{ $data['dep_date'] }} - {{ $data['ret_date'] }}
 	          </div>
 	        </div>
 	        <div class="plan-destinasi-board-box">
@@ -30,7 +30,7 @@
 	            peserta
 	          </div>
 	          <div class="value">
-	            2 Orang
+	            {{ $data['person'] }} @lang('trns.person')
 	          </div>
 	        </div>
 	      </div>
@@ -40,9 +40,9 @@
 	    </div>
 	</div>
 	<div class="cp">
-		<div class="cp__banner" style="background-image: url('images/plan-bg.jpeg');">
+		<div class="cp__banner" style="background-image: url('/images/plan-bg.jpeg');">
 			<div class="cp__banner-text container">
-				<h1>Bandung, Jawa Barat</h1>
+				<h1>{{ $data['destination'] }}, {{ $data['destination-province']}}</h1>
 				<h3><span>132</span> Destinasi</h3>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 					<div class="cp__content col-md-6" onclick="location.href='/trip/recommendation';">
 						<div class="cp__content-wrap">
 							<img class="cp__icon" src="{{ asset('images/art-recommendation.png') }}" alt="">
-							<h3>Rekomendasi</h3>
+							<h3>@lang('trns.recommendation')</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quisquam officia cumque. Dicta consectetur animi, amet recusandae tempore corporis labore ipsa. Non minima illum nostrum quam molestiae reiciendis, porro animi!</p>
 							<img class="cp__svg svg-image" src="{{ asset('images/icon/home-arrow-b.svg') }}" alt="">
 						</div>

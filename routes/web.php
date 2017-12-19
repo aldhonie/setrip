@@ -16,7 +16,11 @@
 // });
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function () {
+  return redirect('/id');
+});
+
+Route::get('/{locale}', 'HomeController@index')->name('home');  
 
 Route::get('/trip/choose', 'PlanController@choose')->name('plan');
 
