@@ -12,6 +12,9 @@ var lists = [
         "name": "Homepage",
         "path": "index-solid.html?view=home"
   } , {
+        "name": "Homepage Login",
+        "path": "index.html?view=home"
+  } , {
         "name": "Recomended Plan",
         "path": "index-solid.html?view=recomended_plan"
   } , {
@@ -51,13 +54,34 @@ var lists = [
         "name": "Pembayaran Thankyou",
         "path": "index-solid.html?view=pembayaran_thankyou"
   } , {
-        "name": "Detail Atraksi",
-        "path": "index-solid.html?view=detail_atraksi"
-  } , {
         "name": "Detail Pemandu",
         "path": "index-solid.html?view=detail_pemandu"
   } , {
         "name": "Detail Open Trip",
         "path": "index-solid.html?view=detail_opentrip"
+  } , {
+        "name": "Detail Atraksi",
+        "path": "index-solid.html?view=detail_atraksi"
+  } , {
+        "name": "Detail Hotel",
+        "path": "index-solid.html?view=detail_hotel"
+  } , {
+        "name": "User Dashboard",
+        "path": "index-solid.html?view=user_dashboard"
+  } , {
+        "name": "User Dashboard Riwayat",
+        "path": "index-solid.html?view=user_dashboard_history"
+  } , {
+        "name": "User Dashboard Wishlist",
+        "path": "index-solid.html?view=user_dashboard_wishlist"
+  } , {
+        "name": "Mitra",
+        "path": "index-solid.html?view=mitra"
+  } , {
+        "name": "Konfirmasi Pembayaran",
+        "path": "index-solid.html?view=konfirmasi_pembayaran"
+  } , {
+        "name": "Static Page",
+        "path": "index-solid.html?view=static"
   }
 ];

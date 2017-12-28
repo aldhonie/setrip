@@ -42,6 +42,7 @@ var closeModal = function(){
 	$('#general--modal').fadeOut()
 	$('#general--modal').removeClass()
 	$('#general--modal').addClass('general--modal')
+  $('body').css('overflow', 'auto');
 }
 
 var modalContainer = $('#general--modal')
@@ -81,6 +82,56 @@ $.info = function (message, ok, title, redir_url) {
 	})
 }
 
+$.success = function (message, ok, title, redir_url) {
+  // alert(message)
+
+  modalContainer.fadeIn()
+  modalContainer.addClass('success')
+
+  if(message !== undefined){
+    modalContainer.find('.mt--body').html(message)
+  }
+
+  if(title !== undefined){
+    modalContainer.find('.mt--head').html(title)
+  }
+
+  $(".btnInfoOk").unbind("click")
+
+  $(".btnInfoOk").click(function (e) {
+
+    e.preventDefault()
+
+    if (ok !== undefined && typeof (ok) === 'function'){
+      ok()
+    }
+
+    if (redir_url){
+
+      $.redirect(redir_url)
+
+    }
+
+    closeModal()
+
+  })
+}
+
+$.sent = function (message, title) {
+  // alert(message)
+
+  modalContainer.fadeIn()
+  modalContainer.addClass('sent')
+
+  if(message !== undefined){
+    modalContainer.find('.mt--body').html(message)
+  }
+
+  if(title !== undefined){
+    modalContainer.find('.mt--head').html(title)
+  }
+}
+
 $.confirm = function (message , title , yes, no, ) {
 
 	modalContainer.fadeIn()
@@ -114,11 +165,140 @@ $.confirm = function (message , title , yes, no, ) {
 			closeModal()
 
 	})
-
-
-
 }
 
+// update 2/Des/2017
+
+// need update for param ok, action, redir_url
+$.login = function (ok, action, redir_url) {
+  // alert(message)
+
+  modalContainer.fadeIn()
+  modalContainer.addClass('login')
+
+  $(".btnInfoOk").unbind("click")
+  $(".open--register").unbind("click")
+  $(".open--forgot").unbind("click")
+
+  $(".btnInfoOk").click(function (e) {
+
+    e.preventDefault()
+
+    if (ok !== undefined && typeof (ok) === 'function'){
+      ok()
+    }
+
+    if (action !== undefined && typeof (action) === 'function'){
+      action()
+    }
+
+    if (redir_url){
+
+      $.redirect(redir_url)
+
+    }
+
+    closeModal()
+
+  })
+
+  $('.open--register').on('click', function(e){
+    e.preventDefault()
+
+    closeModal();
+
+    setTimeout(function(){
+      $.register();
+    }, 300);
+  })
+
+  $('.open--forgot').on('click', function(e){
+    e.preventDefault()
+
+    closeModal();
+
+    setTimeout(function(){
+      $.forgot();
+    }, 300);
+  })
+}
+
+// need update for param ok, action, redir_url
+$.register = function (ok, action, redir_url) {
+  // alert(message)
+
+  $('body').css('overflow', 'hidden');
+
+  modalContainer.fadeIn()
+  modalContainer.addClass('register')
+
+  $(".btnInfoOk").unbind("click")
+  $(".open--login").unbind("click")
+
+  $(".btnInfoOk").click(function (e) {
+
+    e.preventDefault()
+
+    if (ok !== undefined && typeof (ok) === 'function'){
+      ok()
+    }
+
+    if (action !== undefined && typeof (action) === 'function'){
+      action()
+    }
+
+    if (redir_url){
+
+      $.redirect(redir_url)
+
+    }
+
+    closeModal()
+
+  })
+
+  $('.open--login').on('click', function(e){
+    e.preventDefault()
+
+    closeModal();
+
+    setTimeout(function(){
+      $.login();
+    }, 300);
+  })
+}
+
+// need update for param ok and action
+$.forgot = function (ok, action) {
+  // alert(message)
+
+  modalContainer.fadeIn()
+  modalContainer.addClass('forgot')
+
+  $(".btnInfoOk").unbind("click")
+
+  $(".btnInfoOk").click(function (e) {
+
+    e.preventDefault()
+
+    if (ok !== undefined && typeof (ok) === 'function'){
+      ok()
+    }
+
+    if (action !== undefined && typeof (action) === 'function'){
+      action()
+    }
+
+    if (redir_url){
+
+      $.redirect(redir_url)
+
+    }
+
+    closeModal()
+
+  })
+}
 
 $.prompt = function (message, ok) {
 	return prompt(message)
@@ -214,7 +394,7 @@ $(document).on('click','.qtyplus',function (e) {
     var fieldName = $(this).parents('.qty-form').find('.qty')
     // Get its current value
     var currentVal = parseInt($(fieldName).val())
-    // If is not undefined 
+    // If is not undefined
     if (!isNaN(currentVal) && currentVal < max) {
         // Increment
         $(fieldName).val(currentVal + 1)
@@ -238,7 +418,7 @@ $(document).on('click','.qtyminus',function (e) {
         $(fieldName).val(currentVal - 1)
     } else {
         // Otherwise put a 0 there
-        $(fieldName).val(1)
+        $(fieldName).val(0)
     }
     $(fieldName).change();
 })
@@ -297,11 +477,23 @@ var renderStar = function() {
 
   container.each(function(){
     var Star = '<em class="fa fa-star" aria-hidden="true"></em>'
+    var StarGrey = '<em class="fa fa-star" aria-hidden="true" style="color: #d5d5d5;"></em>'
     var Count = $(this).attr('data-star')
+    var Gray = $(this).attr('data-grey')
     var StarContainer = $(this).find('.rating-container')
     var StarTemp = ''
-    for( var x = 0 ; x < Count ; x++ ){
-      StarTemp = StarTemp + Star
+    if(Gray == 'true'){
+      for( var x = 0 ; x < 5 ; x++ ){
+        if(x < Count){
+          StarTemp = StarTemp + Star
+        } else{
+          StarTemp = StarTemp + StarGrey
+        }
+      }
+    } else{
+      for( var x = 0 ; x < Count ; x++ ){
+        StarTemp = StarTemp + Star
+      }
     }
     StarContainer.append(StarTemp)
   })

@@ -8,7 +8,7 @@
             <a href=""><li>@lang('trns.article')</li></a>
             <a href=""><li>@lang('trns.help')</li></a>
             <a href=""><li>@lang('trns.myplan')</li></a>
-            <a href=""><li><button class="btn transparent small">@lang('trns.login')</button></li></a>
+            <a class="open--login-head"><li><button class="btn transparent small">@lang('trns.login')</button></li></a>
         </ul>
         </div>
     </div>
