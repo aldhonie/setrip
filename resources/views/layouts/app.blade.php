@@ -20,21 +20,22 @@
     <link rel="icon" sizes="16x16 24x24 32x32 48x48 64x64" href="images/favicon/favicon.ico">
     <link rel="mask-icon" href="images/favicon/favicon.svg" color="#colorHere"> <!-- put hex color here -->
 
-    <!-- Configure the font used -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+     <!-- Configure the font used -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fullcalendar.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-
-    <script src="{{ asset('js/modernizr-2.8.3.min.js') }}"></script>
+    <script src="js/modernizr-2.8.3.min.js"></script>
     <script>
         var functions = new Array();
-    </script>
+    </script
+
 </head>
 <body>
     @include('layouts.header')

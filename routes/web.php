@@ -15,6 +15,8 @@
 //     return view('welcome');
 // });
 
+// Authentication Routes
+Auth::routes();
 
 Route::get('/', function () {
   return redirect('/id');
